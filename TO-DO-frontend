@@ -5,7 +5,7 @@ Only one button in the panel should be clickable at a time.
 When a button on the panel is clicked. All words are highlighted with the same
 colour, but the first one is also highlighted with a different MAIN colour, 
 which is an !important css.
-!!! The <spand> element that is highlighted with the MAIN class must be 
+!!! The <span> element that is highlighted with the MAIN class must be 
 remembered so that it can be changed easily.
 
 #3
