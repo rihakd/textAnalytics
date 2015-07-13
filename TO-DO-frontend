@@ -37,3 +37,6 @@ text.
 
 #9
 To check if something exits use: if ($(selector).length)
+
+#10 
+Tests
