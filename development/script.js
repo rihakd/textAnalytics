@@ -1,30 +1,35 @@
 // global info
 var panelInUse = false;
 var exapandedWordEntry = "";
+var exapandedWordEntryDiv = null;
 //jQuery
 $(document).ready(function(){
-	// remove word listing from panel
-	$(".delButton").click(function(){
-		fDelButton(this);
-	});
-
-	$(".wordEntry").hover(
-		function(){
+	
+	$("#panel").on({
+		mouseover: function(){
 			// highlight the word entry in the panel
 			addCssToClass("wordEntryHover", ".wordEntry", this);
 			// highlight all word occurenes in the text
 			addCssToClass("selected", ".word", this);
-		},function(){
+		},
+		mouseout: function(){
 			// stop highlighting the word entry in the panel
 			removeCssFromClass("wordEntryHover", ".wordEntry", this);
 			// stop highlighting all word occurenes in the text
 			removeCssFromClass("selected", ".word", this);
+		},
+		click: function(){
+			wordClick(this);
+		}
+	}, ".wordEntry");
+
+	// remove word listing from panel
+	$("#panel").on("click", ".delButton", 
+		function(event){
+			event.stopPropagation();
+			fDelButton(this);
 	});
 
-	$("#panel").on("click", ".wordEntry", 
-		function(){
-			wordClick(this);
-	});
 
 	$(".word").hover(
 		function(){
@@ -45,6 +50,8 @@ $(document).ready(function(){
 	});
 
 });
+
+
 
 function wordClick(word){
 	var $t = $(word).text();
@@ -67,6 +74,7 @@ function wordClick(word){
 		addAfter("<p id='info'>15% bitch</p>", ".wordEntry", word);
 		// Finish by updateing page status
 		exapandedWordEntry = $t
+		exapandedWordEntryDiv = word;
 		panelInUse = true;
 	// if panel in use AND the word we are clicking 
 	// is the word  exapanded. This has only one sub-case 
@@ -74,7 +82,6 @@ function wordClick(word){
 	// !!! This is the only case were we want to close stuff.
 	// 					REMOVE
 	} else if (exapandedWordEntry == $t){
-		// add css
 		// highlish words in text
 		removeCssFromClass("buttonOn", ".wordEntry", word);
 		removeCssFromClass("clickedInText", ".word", word);
@@ -86,17 +93,30 @@ function wordClick(word){
 	// THE REST IS: panelInUser AND exapandedWordEntry != $t
 	// => we are trying to open something that is not currently
 	//		open
+	// !! Both cases panel is being used so:
+	// 		1. we first need to close
+	// 		2.  - either:
+	// 						open an existing entry 
+	//								OR
+	//						add a new entry
 
-	// It is in the panel so we just want to close the previous
-	// thing and open the new one.
-	} else if (false){
-
-	// it is not present so we are cliking in the text 
-	// and need to add a new entry in the text
-	//
-	} else if (false ){
-
-	}
+	} else {
+		removeCssFromClass("buttonOn", ".wordEntry", exapandedWordEntryDiv);
+		removeCssFromClass("clickedInText", ".word", exapandedWordEntryDiv);
+		$("#info").remove();
+		exapandedWordEntry = $t;
+		exapandedWordEntryDiv = word;
+		if (!existsIn(word ,".wordEntry")){
+			$("#panel").prepend(
+				'<div class="wordEntry">' 
+				+ $t
+				+ '<button class="delButton btn '
+				+ 'btn-danger"></button></div>');
+		}
+		addCssToClass("clickedInText", ".word", word);
+		addCssToClass("buttonOn", ".wordEntry", word);
+		addAfter("<p id='info'>15% bitch</p>", ".wordEntry", word);
+	}	
 }
 
 // .js functions 
