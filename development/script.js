@@ -21,7 +21,7 @@ $(document).ready(function(){
 			removeCssFromClass("selected", ".word", this);
 	});
 
-	$(".wordEntry").click(
+	$("#panel").on("click", ".wordEntry", 
 		function(){
 			wordClick(this);
 	});
@@ -39,7 +39,7 @@ $(document).ready(function(){
 			removeCssFromClass("wordEntryHover", ".wordEntry", this);
 	});
 
-	$(".word").click(
+	$(".word").on("click",
 		function(){
 			wordClick(this);
 	});
