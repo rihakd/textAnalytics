@@ -28,28 +28,25 @@
 		</div><!-- #header -->
 		<div id="content">
 			<div id="panel">
-				<div class="wordEntry">There<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">paragraph<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">stored<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">going<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">This<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">is<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">now<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">may<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">first<button class="delButton btn btn-danger"></button></div>
-				<div class="wordEntry">need<button class="delButton btn btn-danger"></button></div>
-
+				<script>
+					var wordArray = ['There', 'paragraph', 'stored',
+					'going', 'This', 'is', 'now', 'may', 'first', 
+					'need'];
+					for (i = 0; i < wordArray.length; i++) {
+						addWordEntry(wordArray[i]);
+					}
+				</script>
 		  	</div>
 		  	<div id="text" contenteditable="true">
 		  	
 			  	<h3>Essay Title</h3>
 			  	<p>
-			  		<span class="word">This</span> 
+			  		<span class="word">There</span> 
 			  		<span class="word">is</span> <span class="word">the</span> <span class="word">first</span> <span class="word">test</span> <span class="word">paragraph</span>. <span class="word">There</span> 
 			  		will be <span class="word">a</span> few sentences
-			  		about the singificance of life and all that. We just need to
+			  		about the singificance of life and all that. We just need to <span class="word">There</span>
 			  		waste a little more space to make sure that there is enough
-			  		words per line.
+			  		words per line. <span class="word">There</span>.
 			  	</p>
 			  	<p>
 			  		Now is a good time to start a new paragraph to test things out. 
@@ -102,7 +99,17 @@
 			  		all that. For example where is this text going to be stored. 
 			  		It's probably best if the analysis happens on the client side
 			  		since the client may have huge amounts of text. 
+			  		<span class="word">There</span> 
 			  	</p>
+		  	</div>
+
+		  	<div id="navigation">
+		  		<button class="prev btn btn-default btn-lg">
+		  			<span class="glyphicon glyphicon-menu-left"></span>
+		  		</button>
+		  		<button class="next btn btn-default btn-lg">
+		  			<span class="glyphicon glyphicon-menu-right"></span>
+		  		</button>
 		  	</div>
 
 		</div><!-- #content -->
